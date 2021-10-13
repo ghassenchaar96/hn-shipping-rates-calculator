@@ -11,13 +11,15 @@ app.post("/", function (req, res) {
   console.log("received a req");
   console.log({ requestBody: req.body });
 
-  res.send({
-    service_name: "HN shipping rate proovider",
-    description: "",
-    service_code: "HN shipping rates",
-    currency: "€",
-    total_price: 500,
-  });
+  res.send([
+    {
+      service_name: "HN shipping rate proovider",
+      description: "",
+      service_code: "HN shipping rates",
+      currency: "€",
+      total_price: 500,
+    },
+  ]);
 });
 
 app.listen(3000, function () {
