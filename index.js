@@ -9,7 +9,6 @@ app.get("/", async function (req, res) {
 
 app.post("/", function (req, res) {
   console.log("received a req");
-  console.log({ requestBody: req });
 
   res.json({
     rates: [
@@ -18,7 +17,7 @@ app.post("/", function (req, res) {
         description: "",
         service_code: "HN shipping rates",
         currency: "€",
-        total_price: 500,
+        total_price: "500",
       },
     ],
   });
