@@ -9,17 +9,19 @@ app.get("/", async function (req, res) {
 
 app.post("/", function (req, res) {
   console.log("received a req");
-  console.log({ requestBody: req.body });
+  console.log({ requestBody: req });
 
-  res.send([
-    {
-      service_name: "HN shipping rate proovider",
-      description: "",
-      service_code: "HN shipping rates",
-      currency: "€",
-      total_price: 500,
-    },
-  ]);
+  res.json({
+    rates: [
+      {
+        service_name: "HN shipping rate proovider",
+        description: "",
+        service_code: "HN shipping rates",
+        currency: "€",
+        total_price: 500,
+      },
+    ],
+  });
 });
 
 app.listen(3000, function () {
