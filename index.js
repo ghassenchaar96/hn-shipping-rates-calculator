@@ -14,7 +14,7 @@ app.get("/", async function (req, res) {
 app.post("/", function (req, res) {
   console.log("received a req");
   console.log(req.body);
-  console.log(req.body.rate?.items);
+  console.log(req.body.rate.items);
 
   let rates = [
     {
@@ -26,11 +26,11 @@ app.post("/", function (req, res) {
     },
   ];
 
-  const items = req.body?.rate?.items;
+  const items = req.body.rate.items;
   items.map((item) => {
-    if (item.properties && typeof item.properties._zapietId === "string") {
+    if (item.properties && typeof item.properties._ZapietId === "string") {
       console.log("YES ZAPIET ID FOUND");
-      if (item.properties._zapietId.includes("M=L")) {
+      if (item.properties._ZapietId.includes("M=D")) {
         console.log("LOCAL DELIVERY DETECTED");
         rates = [
           {
@@ -41,7 +41,7 @@ app.post("/", function (req, res) {
             total_price: "500",
           },
         ];
-      } else if (item.properties._zapietId.includes("M=P")) {
+      } else if (item.properties._ZapietId.includes("M=P")) {
         console.log("PICKUP DETECTED");
         rates = [
           {
@@ -52,11 +52,11 @@ app.post("/", function (req, res) {
             total_price: "0",
           },
         ];
-        res.json({
-          rates,
-        });
       }
     }
+  });
+  res.json({
+    rates,
   });
 });
 
