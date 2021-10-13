@@ -1,5 +1,9 @@
 var express = require("express");
+const bp = require("body-parser");
 var app = express();
+
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
 
 app.get("/", async function (req, res) {
   console.log("Hello Worldddd!");
@@ -9,6 +13,7 @@ app.get("/", async function (req, res) {
 
 app.post("/", function (req, res) {
   console.log("received a req");
+  console.log(req.body);
 
   res.json({
     rates: [
