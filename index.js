@@ -16,7 +16,7 @@ app.post("/", function (req, res) {
         service_name: "HN shipping rate proovider",
         description: "",
         service_code: "HN shipping rates",
-        currency: "€",
+        currency: "EUR",
         total_price: "500",
       },
     ],
