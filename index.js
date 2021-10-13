@@ -14,7 +14,7 @@ app.get("/", async function (req, res) {
 app.post("/", function (req, res) {
   console.log("received a req");
   console.log(req.body);
-  const items = req.body?.items;
+  const items = req.body?.rate?.items;
   items.map((item) => {
     if (item.properties && typeof item.properties._zapietId === "string") {
       console.log("YES ZAPIET ID FOUND");
