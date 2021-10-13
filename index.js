@@ -14,17 +14,42 @@ app.get("/", async function (req, res) {
 app.post("/", function (req, res) {
   console.log("received a req");
   console.log(req.body);
+  const items = req.body?.items;
+  items.map((item) => {
+    if (item.properties && typeof item.properties._zapietId === "string") {
+      console.log("YES ZAPIET ID FOUND");
+      if (item.properties._zapietId.includes("M=L")) {
+        console.log("LOCAL DELIVERY DETECTED");
 
-  res.json({
-    rates: [
-      {
-        service_name: "HN shipping rate proovider",
-        description: "",
-        service_code: "HN shipping rates",
-        currency: "EUR",
-        total_price: "500",
-      },
-    ],
+        let rates = [
+          {
+            service_name: "HN shipping rate - Livraison à domicile",
+            description: "",
+            service_code: "HN shipping rates",
+            currency: "EUR",
+            total_price: "500",
+          },
+        ];
+        res.json({
+          rates,
+        });
+      } else if (item.properties._zapietId.includes("M=P")) {
+        console.log("PICKUP DETECTED");
+
+        let rates = [
+          {
+            service_name: "HN shipping rate - Livraison en point relais",
+            description: "",
+            service_code: "HN shipping rates",
+            currency: "EUR",
+            total_price: "0",
+          },
+        ];
+        res.json({
+          rates,
+        });
+      }
+    }
   });
 });
 
