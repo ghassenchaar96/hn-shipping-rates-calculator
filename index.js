@@ -16,15 +16,7 @@ app.post("/", function (req, res) {
   console.log(req.body);
   console.log(req.body.rate.items);
 
-  let rates = [
-    {
-      service_name: "HN shipping rate - Standard",
-      description: "",
-      service_code: "HN shipping rates",
-      currency: "EUR",
-      total_price: "0",
-    },
-  ];
+  let rates;
 
   const items = req.body.rate.items;
   items.map((item) => {
